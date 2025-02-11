@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <title>Meu App de Gastos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <h1>Bem-vindo ao Meu App de Gastos!</h1>
+    <input type="text" id="descricao" placeholder="Descrição">
+    <input type="number" id="valor" placeholder="Valor">
+    <button id="adicionar">Adicionar</button>
+    <ul id="lista-gastos"></ul>
+    <script src="script.js"></script>
 </body>
 </html>

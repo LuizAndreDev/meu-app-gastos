@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    base: '/',
-    build: {
-        outDir: 'dist',
-    },
+  define: {
+    'import.meta.env.VITE_SUPABASE_URL': JSON.stringify(process.env.SUPABASE_URL),
+    'import.meta.env.VITE_SUPABASE_KEY': JSON.stringify(process.env.SUPABASE_KEY),
+  },
 });
