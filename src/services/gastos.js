@@ -16,3 +16,12 @@ export async function getGastos() {
 
     return { gastos, error };
 }
+
+export async function deleteGasto(id) {
+    const { error } = await supabase
+        .from('gastos')
+        .delete()
+        .eq('id', id);
+
+    return { error };
+}

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu App de Gastos</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Link para o arquivo de estilos (opcional) -->
+    <link rel="stylesheet" href="/src/styles/global.css">
 </head>
 <body>
-    <h1>Bem-vindo ao Meu App de Gastos!</h1>
-    <input type="text" id="descricao" placeholder="Descrição">
-    <input type="number" id="valor" placeholder="Valor">
-    <button id="adicionar">Adicionar</button>
-    <ul id="lista-gastos"></ul>
-    <script src="script.js"></script>
+    <!-- Div principal onde o conteúdo será renderizado -->
+    <div id="app"></div>
+
+    <!-- Script principal do projeto -->
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-import { addGasto, getGastos } from '../services/gastos';
+import { addGasto, getGastos, deleteGasto } from '../services/gastos';
+import { renderChart } from '../components/Chart';
 
 export default function Dashboard() {
     const dashboard = document.createElement('div');
@@ -15,11 +16,13 @@ export default function Dashboard() {
             <button type="submit">Adicionar Gasto</button>
         </form>
         <ul id="gastos-list"></ul>
+        <canvas id="meuGrafico"></canvas>
     `;
 
     const gastoForm = dashboard.querySelector('#gasto-form');
     const gastosList = dashboard.querySelector('#gastos-list');
 
+    // Adicionar um novo gasto
     gastoForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const descricao = gastoForm.querySelector('#descricao').value;
@@ -28,37 +31,29 @@ export default function Dashboard() {
 
         const { error } = await addGasto(descricao, valor, categoria);
         if (!error) {
-            loadGastos();
-            gastoForm.reset();
+            loadGastos(); // Recarrega a lista de gastos
+            gastoForm.reset(); // Limpa o formulário
         }
     });
 
+    // Carregar a lista de gastos
     async function loadGastos() {
         const { gastos, error } = await getGastos();
         if (!error) {
             gastosList.innerHTML = gastos.map(gasto => `
-                <li>${gasto.descricao} - R$ ${gasto.valor} (${gasto.categoria})</li>
+                <li>
+                    ${gasto.descricao} - R$ ${gasto.valor} (${gasto.categoria})
+                    <button onclick="deleteGasto(${gasto.id})">Excluir</button>
+                </li>
             `).join('');
         }
     }
 
-    loadGastos();
-    return dashboard;
-}
-
-import { renderChart } from '../components/Chart';
-
-export default function Dashboard() {
-    const dashboard = document.createElement('div');
-    dashboard.innerHTML = `
-        <h1>Dashboard</h1>
-        <form id="gasto-form">...</form>
-        <ul id="gastos-list"></ul>
-        <canvas id="meuGrafico"></canvas>
-    `;
-
-    // ... (código anterior)
-
+    // Renderizar o gráfico
     renderChart();
+
+    // Carregar os gastos ao iniciar a página
+    loadGastos();
+
     return dashboard;
 }
